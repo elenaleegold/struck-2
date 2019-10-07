@@ -7,7 +7,7 @@ let timers = [];
 var img;
 
 var losePossib, gameOver;
-var curPos, origPos, generate;
+var curPos, origPos, generate, tintNum;
 
 var r, g, b;
 let xoff = 0.0;
@@ -29,6 +29,7 @@ function preload(){
   char3 = loadImage("img/chara3.png");
   char4 = loadImage("img/chara4.png");
   lI = loadImage("img/loveInterest4.png");
+  lose = loadImage("img/lose.png");
 
   splash = loadImage("img/Splash.png");
 }
@@ -54,6 +55,7 @@ function setup() {
   generate = false;
   initCount = -1;
   algo = -1;
+  tintNum = 0;
   losePossib = false;
   platforms.push(new Platform(200, height, 2000, 0, 0,0));  
   player = new Player(width/2, 600, round(random(0, 1)));
@@ -81,6 +83,13 @@ function setup() {
 }
 
 function draw() {
+  if(gameOver == true){
+    tint(255, tintNum);
+    image(lose,0,311, 480, 720);
+    tintNum++;
+    console.log(tintNum);
+  }
+  else{
   if( tut == true ){
   b = map(player.pos.y, 300, -6000, 220, 0);
   r = map(player.pos.y, 300, -7000, 0, 255);
@@ -192,9 +201,9 @@ if(player.pos.y < -100){
    player.setSpeed(3);
 }
 
-if(player.vel.y > 9){
-  gameOver = true;
-}
+// if(player.vel.y > 9){
+//   gameOver = true;
+// }
 
 // if(player.pos.y > height - 200 && gameOver== true && UpCollision(0) == false){
 //   player.vel.y++;
@@ -235,6 +244,7 @@ if(player.vel.y > 9){
 }
 else{
   image(splash,0,0);
+}
 }
 
   
