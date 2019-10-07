@@ -133,7 +133,7 @@ blendMode(REPLACE);
    
     if(i != 0){
         platforms[i].stopAnim();
-         platforms[i].x+=random(heartCount *-1, heartCount);
+         platforms[i].x+=random(heartCount/2 *-1, heartCount/2);
     }
     if(UpCollision(i)) {
         // Disappearing platform
